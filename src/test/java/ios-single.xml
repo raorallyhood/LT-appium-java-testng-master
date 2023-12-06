@@ -4,9 +4,9 @@
 
 
     <test name="iOSApp 1">
-        <parameter name="version" value="14"/>
-        <parameter name="platform" value="iOS"/>
-        <parameter name="device" value="iPhone.*"/>
+        <parameter name="version" value="17"/>
+        <parameter name="platform" value="ios"/>
+        <parameter name="device" value="iPhone 15 Pro Max"/>
         <classes>
             <class name="iOSApp"/>
         </classes>

@@ -14,11 +14,11 @@ import org.testng.annotations.Test;
 
 public class iOSApp {
 
-    String userName = System.getenv("LT_USERNAME") == null ? "username" : System.getenv("LT_USERNAME"); //Add username here
-    String accessKey = System.getenv("LT_ACCESS_KEY") == null ? "accessKey" : System.getenv("LT_ACCESS_KEY"); //Add accessKey here
-    String app_id = System.getenv("LT_APP_ID") == null ? "lt://proverbial-ios" : System.getenv("LT_APP_ID");      //Enter your LambdaTest App ID at the place of lt://proverbial-android
-    String grid_url = System.getenv("LT_GRID_URL") == null ? "mobile-hub.lambdatest.com" : System.getenv("LT_GRID_URL");
-
+	String userName = "rao";
+	String accessKey = "CEPVvcooucduSfH1HgroWrwfPXSpUHpVZevjYeOlRxhCd0HqeS";
+	//String app_id = System.getenv("LT_APP_ID") == null ? "lt://APP10160241051701359108526404" : System.getenv("LT_APP_ID");      //Enter your LambdaTest App ID at the place of lt://proverbial-android
+	String grid_url = "mobile-hub.lambdatest.com";
+	    
     AppiumDriver driver;
 
     @Test
@@ -33,7 +33,7 @@ public class iOSApp {
             capabilities.setCapability("platformVersion", version);
             capabilities.setCapability("platformName", platform);
             capabilities.setCapability("isRealMobile", true);
-            capabilities.setCapability("app", app_id); //Enter your app url
+            capabilities.setCapability("app", "lt://APP1016033381701883711615702"); //Enter your app url
             capabilities.setCapability("network", false);
             capabilities.setCapability("visual", true);
             capabilities.setCapability("devicelog", true);
@@ -44,43 +44,54 @@ public class iOSApp {
 
             WebDriverWait Wait = new WebDriverWait(driver, 30);
 
-            //Changes the color of the text
-            Wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("color"))).click();
-            Thread.sleep(1000);
+			/*
+			 * //Changes the color of the text
+			 * Wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.
+			 * AccessibilityId("color"))).click(); Thread.sleep(1000);
+			 * 
+			 * //Changes the text to "Proverbial"
+			 * Wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.
+			 * AccessibilityId("Text"))).click(); Thread.sleep(1000);
+			 * 
+			 * //Toast will be visible
+			 * Wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.
+			 * AccessibilityId("toast"))).click(); Thread.sleep(1000);
+			 * 
+			 * //Notification will be visible
+			 * Wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.
+			 * AccessibilityId("notification"))).click(); Thread.sleep(4000);
+			 * 
+			 * //Opens the geolocation page
+			 * Wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.
+			 * AccessibilityId("geoLocation"))).click(); Thread.sleep(4000);
+			 * 
+			 * //Takes back driver.navigate().back();
+			 * 
+			 * //Takes to speedtest page
+			 * Wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.
+			 * AccessibilityId("speedTest"))).click(); Thread.sleep(4000);
+			 * driver.navigate().back();
+			 * 
+			 * //Opens the browser
+			 * Wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.
+			 * AccessibilityId("Browser"))).click(); Thread.sleep(1000); MobileElement url =
+			 * (MobileElement) driver.findElementByAccessibilityId("url"); url.click();
+			 * url.sendKeys("https://www.lambdatest.com");
+			 * Wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.
+			 * AccessibilityId("find"))).click(); Thread.sleep(1000); driver.quit();
+			 */
+            
+            MobileElement RuserName = (MobileElement) driver.findElementByXPath("//XCUIElementTypeTextField");
+            RuserName.sendKeys("rao@rallyhood.com");
+            
+            MobileElement RPsw = (MobileElement) driver.findElementByXPath("//XCUIElementTypeSecureTextField");
+            RPsw.sendKeys("Test12345");
 
-            //Changes the text to "Proverbial"
-            Wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Text"))).click();
-            Thread.sleep(1000);
-
-            //Toast will be visible
-            Wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("toast"))).click();
-            Thread.sleep(1000);
-
-            //Notification will be visible
-            Wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("notification"))).click();
-            Thread.sleep(4000);
-
-            //Opens the geolocation page
-            Wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("geoLocation"))).click();
-            Thread.sleep(4000);
-
-            //Takes back
-            driver.navigate().back();
-
-            //Takes to speedtest page
-            Wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("speedTest"))).click();
-            Thread.sleep(4000);
-            driver.navigate().back();
-
-            //Opens the browser
-            Wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Browser"))).click();
-            Thread.sleep(1000);
-            MobileElement url = (MobileElement) driver.findElementByAccessibilityId("url");
-            url.click();
-            url.sendKeys("https://www.lambdatest.com");
-            Wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("find"))).click();
-            Thread.sleep(1000);
+            MobileElement login = (MobileElement) driver.findElementByXPath("//XCUIElementTypeButton[@name=\"LOG IN\"]");
+            login.click();
             driver.quit();
+            
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
